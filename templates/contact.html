@@ -1,0 +1,88 @@
+{% include "header.html" %}
+
+<section>
+    <div class="container my-5">
+
+  <div class="p-5 text-center rounded-3">
+      <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" fill="white" class="mb-1 bi bi-patch-question" viewBox="0 0 16 16">
+  <path d="M8.05 9.6c.336 0 .504-.24.554-.627.04-.534.198-.815.847-1.26.673-.475 1.049-1.09 1.049-1.986 0-1.325-.92-2.227-2.262-2.227-1.02 0-1.792.492-2.1 1.29A1.7 1.7 0 0 0 6 5.48c0 .393.203.64.545.64.272 0 .455-.147.564-.51.158-.592.525-.915 1.074-.915.61 0 1.03.446 1.03 1.084 0 .563-.208.885-.822 1.325-.619.433-.926.914-.926 1.64v.111c0 .428.208.745.585.745"/>
+  <path d="m10.273 2.513-.921-.944.715-.698.622.637.89-.011a2.89 2.89 0 0 1 2.924 2.924l-.01.89.636.622a2.89 2.89 0 0 1 0 4.134l-.637.622.011.89a2.89 2.89 0 0 1-2.924 2.924l-.89-.01-.622.636a2.89 2.89 0 0 1-4.134 0l-.622-.637-.89.011a2.89 2.89 0 0 1-2.924-2.924l.01-.89-.636-.622a2.89 2.89 0 0 1 0-4.134l.637-.622-.011-.89a2.89 2.89 0 0 1 2.924-2.924l.89.01.622-.636a2.89 2.89 0 0 1 4.134 0l-.715.698a1.89 1.89 0 0 0-2.704 0l-.92.944-1.32-.016a1.89 1.89 0 0 0-1.911 1.912l.016 1.318-.944.921a1.89 1.89 0 0 0 0 2.704l.944.92-.016 1.32a1.89 1.89 0 0 0 1.912 1.911l1.318-.016.921.944a1.89 1.89 0 0 0 2.704 0l.92-.944 1.32.016a1.89 1.89 0 0 0 1.911-1.912l-.016-1.318.944-.921a1.89 1.89 0 0 0 0-2.704l-.944-.92.016-1.32a1.89 1.89 0 0 0-1.912-1.911z"/>
+  <path d="M7.001 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0"/>
+</svg>
+    <h1 class="text-white">Do you want to know more?</h1>
+    <p class="lead text-white">
+      Please download my CV.
+    </p>
+      <button type="button" class="btn btn-success btn-lg px-4 me-md-2">
+          <a class="start_btn" href="{{ url_for('download_cv') }}">My CV</a>
+      </button>
+  </div>
+</div>
+
+    <fieldset class="cont"><legend class="contact ">Or <br> <span class="subheading">Contact Me</span></legend></fieldset>
+    <div class="page-heading tag">
+          {% if msg_sent: %}
+          <h1 class="orange text-center m-5">Successfully sent your message</h1>
+          {% endif %}
+    </div>
+    <main class="mb-4">
+  <div class="container px-4 px-lg-5 tag">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7">
+        <p class="text-white text-center">
+          Want to get in touch? Fill out the form below to send me a message and
+          I will get back to you as soon as possible!
+        </p>
+        <div class="my-5">
+          <form id="contactForm" name="sentMessage" action="{{ url_for('contact') }}" method="post">
+            <div>
+                <label class='text-white my-3' for="name">Name</label>
+              <input
+                class="form-control"
+                id="name"
+                name="name"
+                type="text"
+                placeholder="Enter your name..."
+                required
+              />
+
+            </div>
+            <div>
+                <label class='text-white my-3' for="email">Email address</label>
+              <input
+                class="form-control"
+                id="email"
+                name="email"
+                type="email"
+                placeholder="Enter your email..."
+                required
+              />
+
+            </div>
+            <div><label class='text-white my-3' for="message">Message</label>
+              <textarea
+                class="form-control"
+                id="message"
+                name="message"
+                placeholder="Enter your message here..."
+                required
+                style="height: 12rem"
+              ></textarea>
+
+            </div>
+            <br />
+            <button class="btn btn-success btn-lg px-4 me-md-2"
+              id="submitButton"
+              type="submit"
+            >
+              Send
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+</section>
+
+{% include "footer.html" %}

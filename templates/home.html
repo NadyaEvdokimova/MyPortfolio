@@ -1,0 +1,27 @@
+{% include "header.html" %}
+
+<section>
+        <div class="container-fluid first_page">
+        <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+        <div class="col-10 col-sm-5 col-lg-5 middle_image">
+            <img class='profile img-fluid' src="{{ url_for('static', filename='assets/image/profile.jpg') }}"
+                 alt="Nadezhda Evdokimova Junior Python Developer">
+        </div>
+         <div class="col-lg-6 text_home">
+            <h1 class="display-7 fw-bold text-emphasis lh-1 mb-3 text-white">Hello! I'm Nadya Evdokimova</h1>
+            <p class="lead text-white">Junior Python Developer</p>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+            <button type="button" class="btn btn-success btn-lg px-4 me-md-2">
+                <a class="start_btn" href="{{ url_for('about') }}">About Me</a>
+            </button>
+            <button type="button" class="btn btn-outline-secondary btn-lg px-4">
+                 <a class="start_btn" href="{{ url_for('portfolio') }}">Portfolio</a>
+            </button>
+            </div>
+        </div>
+        </div>
+        </div>
+
+</section>
+
+{% include "footer.html" %}
