@@ -3,6 +3,7 @@ from flask_bootstrap import Bootstrap5
 import smtplib
 from datetime import datetime
 import os
+import socket
 
 app = Flask(__name__)
 Bootstrap5(app)
@@ -46,11 +47,18 @@ def contact():
 
 
 def send_email(name, email, message):
-    email_message = f"Subject:New Message\n\nName: {name}\nEmail: {email}\nMessage:{message}"
-    with smtplib.SMTP("smtp.gmail.com") as connection:
-        connection.starttls()
-        connection.login(OWN_EMAIL, OWN_PASSWORD)
-        connection.sendmail(OWN_EMAIL, OWN_EMAIL, email_message)
+    try:
+        smtp_server = "smtp.gmail.com"
+        port = 587
+        socket.create_connection((smtp_server, port), timeout=10)
+        print("Connection to SMTP server successful")
+    except Exception as e:
+        print(f"Failed to connect to SMTP server: {e}")
+    # email_message = f"Subject:New Message\n\nName: {name}\nEmail: {email}\nMessage:{message}"
+    # with smtplib.SMTP("smtp.gmail.com") as connection:
+    #     connection.starttls()
+    #     connection.login(OWN_EMAIL, OWN_PASSWORD)
+    #     connection.sendmail(OWN_EMAIL, OWN_EMAIL, email_message)
 
 
 if __name__ == "__main__":
