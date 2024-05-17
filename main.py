@@ -52,14 +52,14 @@ def contact():
     return render_template("contact.html", msg_sent=False)
 
 
-def send_email(subject, body, sender, recipients, password):
+def send_email(subject, body, sender, recipient, password):
     msg = MIMEText(body)
     msg['Subject'] = subject
     msg['From'] = sender
     msg['To'] = recipient
     with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp_server:
        smtp_server.login(sender, password)
-       smtp_server.sendmail(sender, recipients, msg.as_string())
+       smtp_server.sendmail(sender, recipient, msg.as_string())
     # email_message = f"Subject:New Message\n\nName: {name}\nEmail: {email}\nMessage:{message}"
     # with smtplib.SMTP("smtp.gmail.com") as connection:
     #     connection.starttls()
