@@ -3,7 +3,7 @@ from flask_bootstrap import Bootstrap5
 import smtplib
 from datetime import datetime
 import os
-import socket
+from email.mime.text import MIMEText
 
 app = Flask(__name__)
 Bootstrap5(app)
@@ -41,19 +41,25 @@ def portfolio():
 def contact():
     if request.method == "POST":
         data = request.form
-        send_email(data["name"], data["email"], data["message"])
+        subject = "Email from MyPortfolio"
+        body = f"Subject:New Message\n\nName: {data["name"]}\nEmail: {data["email"]}\nMessage:{data["message"]}"
+        sender = OWN_EMAIL
+        recipient = OWN_EMAIL
+        password = OWN_PASSWORD
+        send_email(subject, body, sender, recipient, password)
+        # send_email(data["name"], data["email"], data["message"])
         return render_template("contact.html", msg_sent=True)
     return render_template("contact.html", msg_sent=False)
 
 
-def send_email(name, email, message):
-    try:
-        smtp_server = "smtp.gmail.com"
-        port = 587
-        socket.create_connection((smtp_server, port), timeout=10)
-        print("Connection to SMTP server successful")
-    except Exception as e:
-        print(f"Failed to connect to SMTP server: {e}")
+def send_email(subject, body, sender, recipients, password):
+    msg = MIMEText(message)
+    msg['Subject'] = subject
+    msg['From'] = sender
+    msg['To'] = recipient
+    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp_server:
+       smtp_server.login(sender, password)
+       smtp_server.sendmail(sender, recipients, msg.as_string())
     # email_message = f"Subject:New Message\n\nName: {name}\nEmail: {email}\nMessage:{message}"
     # with smtplib.SMTP("smtp.gmail.com") as connection:
     #     connection.starttls()
