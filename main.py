@@ -53,7 +53,7 @@ def contact():
 
 
 def send_email(subject, body, sender, recipients, password):
-    msg = MIMEText(message)
+    msg = MIMEText(body)
     msg['Subject'] = subject
     msg['From'] = sender
     msg['To'] = recipient
