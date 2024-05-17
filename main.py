@@ -42,12 +42,11 @@ def contact():
     if request.method == "POST":
         data = request.form
         subject = "Email from MyPortfolio"
-        body = f"Subject:New Message\n\nName: {data['name']}\nEmail: {data['email']}\nMessage:{data['message']}"
+        body = f"Name: {data['name']}\nEmail: {data['email']}\nMessage:{data['message']}"
         sender = OWN_EMAIL
         recipient = OWN_EMAIL
         password = OWN_PASSWORD
         send_email(subject, body, sender, recipient, password)
-        # send_email(data["name"], data["email"], data["message"])
         return render_template("contact.html", msg_sent=True)
     return render_template("contact.html", msg_sent=False)
 
@@ -60,11 +59,6 @@ def send_email(subject, body, sender, recipient, password):
     with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp_server:
        smtp_server.login(sender, password)
        smtp_server.sendmail(sender, recipient, msg.as_string())
-    # email_message = f"Subject:New Message\n\nName: {name}\nEmail: {email}\nMessage:{message}"
-    # with smtplib.SMTP("smtp.gmail.com") as connection:
-    #     connection.starttls()
-    #     connection.login(OWN_EMAIL, OWN_PASSWORD)
-    #     connection.sendmail(OWN_EMAIL, OWN_EMAIL, email_message)
 
 
 if __name__ == "__main__":
