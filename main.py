@@ -42,7 +42,7 @@ def contact():
     if request.method == "POST":
         data = request.form
         subject = "Email from MyPortfolio"
-        body = f"Subject:New Message\n\nName: {data["name"]}\nEmail: {data["email"]}\nMessage:{data["message"]}"
+        body = f"Subject:New Message\n\nName: {data['name']}\nEmail: {data['email']}\nMessage:{data['message']}"
         sender = OWN_EMAIL
         recipient = OWN_EMAIL
         password = OWN_PASSWORD
